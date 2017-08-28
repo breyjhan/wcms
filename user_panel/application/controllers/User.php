@@ -30,6 +30,7 @@ class User extends CI_Controller {
 
 		$this->load->helper('My_functions');
 		$this->load->model('Users');
+		$this->load->model('Sites');
 
 		$this->userinfo = $this->session->userdata('user_xinfo');
 	}
@@ -41,17 +42,22 @@ class User extends CI_Controller {
 
 	public function dashboard()
 	{
-		$this->load->view('_header');
-		$this->load->view('dashboard');
+		$user_info 				= $this->session->userdata('user_xinfo');
+		$get_site['s_owner_id'] = $user_info->ui_user_id;
+		$data['sites'] 			= $this->Sites->get_row($get_site);
+		$this->load->view('_header',$data);
+		$this->load->view('dashboard',$data);
 		$this->load->view('_footer');
 	}
 
 
 	public function site($site = ''){
 		if($site ==''){
-
-			$this->load->view('_header');
-			$this->load->view('site');
+			$user_info 				= $this->session->userdata('user_xinfo');
+			$get_site['s_owner_id'] = $user_info->ui_user_id;
+			$data['sites'] 			= $this->Sites->get_row($get_site);
+			$this->load->view('_header',$data);
+			$this->load->view('site',$data);
 			$this->load->view('_footer');
 
 		}else{
@@ -59,6 +65,26 @@ class User extends CI_Controller {
 			$this->load->view('site');
 			$this->load->view('_footer');
 		}
+	}
+
+	public function profile(){
+		$user_info = $this->session->userdata('user_xinfo');
+		$data['user_info'] =$user_info;
+		$get_site['s_owner_id'] = $user_info->ui_user_id;
+		$data['sites'] 			= $this->Sites->get_row($get_site);
+		$this->load->view('_header',$data);
+		$this->load->view('profile/profile',$data);
+		$this->load->view('_footer');
+	}
+
+	public function update_profile(){
+		$user_info = $this->session->userdata('user_xinfo');
+		$data['user_info'] =$user_info;
+		$get_site['s_owner_id'] = $user_info->ui_user_id;
+		$data['sites'] 			= $this->Sites->get_row($get_site);
+		$this->load->view('_header',$data);
+		$this->load->view('profile/profile_edit',$data);
+		$this->load->view('_footer');
 	}
 
 

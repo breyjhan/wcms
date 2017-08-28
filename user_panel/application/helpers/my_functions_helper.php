@@ -9,8 +9,8 @@ function flash($data,$status = true){
 	$user->session->set_flashdata('msg', $msg);
 }
 
-function base(){
-	return base_url();	
+function base($url=''){
+	return base_url($url);	
 }
 
 
@@ -20,6 +20,7 @@ function base(){
 
 function notify(){
 	$user = new Users();
+	//$CI = & get_instance();
 	$msg  = $user->session->flashdata('msg');
 	if(isset($msg)){
 		if($msg['status'] == true){
@@ -31,7 +32,7 @@ function notify(){
 }
 
 function url($link){
-	echo base_url().$link;	
+	echo base_url($link);	
 }
 
 function css(){

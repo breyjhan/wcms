@@ -10,15 +10,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title></title>
   </head>
   <body>
-		<?php include 'inc_header.php'; ?>
+		<?php get_header(); ?>
 
-		<?php if(isset($page->page_slug) && ($page->page_slug == 'home')||($page->page_slug == 'index')){
-			include 'home.php';
+		<?php if(is_home()){
+			get_page('home');
 		}else{
-			include 'page.php';
+			get_page('page');
 		}
 		?>
 
-		<?php include 'inc_footer.php'; ?>
+		<?php get_footer(); ?>
 </body>
 </html>

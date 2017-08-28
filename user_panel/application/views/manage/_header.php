@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Startmin - Bootstrap Admin Theme</title>
+    <title><?php echo $sites->s_name ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php css(); ?>bootstrap.min.css" rel="stylesheet">
@@ -45,8 +45,10 @@
         .inline li{
             display: inline-block;
         }
-        .square{            
-            padding-bottom: 50px;
+        tr{border-bottom: 1px solid #ccc;}
+        td,th{padding: 10px}
+        tr:first-child{
+           background: #ccc; 
         }
         .square .form-control{
             display: block;
@@ -65,16 +67,6 @@
         }
         .aligncenter{text-align: center}
         .alignright{text-align: right}
-        .square .row > div{
-            margin-bottom: 20px;
-        }
-
-        .edit .row > div{
-            margin-bottom: 20px;
-        }
-        .edit .row > div input[type='text']{
-            background: #f3f1f1;
-        }
     </style>
 </head>
 <body>
@@ -84,8 +76,13 @@
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Webpro CMS</a>
+            <a class="navbar-brand" href="<?php url('user/dashboard') ?>">Webpro CMS</a>
         </div>
+
+        <!-- Top Navigation: Left Menu -->
+        <ul class="nav navbar-nav navbar-left navbar-top-links">
+            <li><a href="<?php echo $sites->s_url;?>" target="_blank"><i class="fa fa-eye fa-fw"></i> <?php echo $sites->s_name; ?></a></li>
+        </ul>
 
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -141,15 +138,12 @@
 
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="<?php ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="<?php url('site/manage/'.$sites->s_id);?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
+
                     <li>
-                        <a href=""><i class="fa fa-sitemap fa-fw"></i> My Site<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="<?php url('site/manage/'.$sites->s_id);?>"><?php echo $sites->s_name; ?></a>
-                            </li>
-                        </ul>
+                        <a href="<?php url('site/manage/'.$sites->s_id.'/page'); ?>"><i class="fa fa-print fa-fw"></i> Page </a>
+
                     </li>
                 </ul>
 

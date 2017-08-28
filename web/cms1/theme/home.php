@@ -1,3 +1,7 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+
     <section id="banner">
       <div class="container">
         <div class="row">
@@ -10,9 +14,6 @@
       </div>
     </section>
 
-
-
-		<?php if(isset($page) && count($page) > 0){
-			include 'content/'.$page->page_id.'.php'; 
-		}?>
+    
+		<?php get_content($page->page_id);  ?>
 
