@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo $sites->s_name ?></title>
+    <title><?php echo $site->s_name ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php css(); ?>bootstrap.min.css" rel="stylesheet">
@@ -67,9 +67,29 @@
         }
         .aligncenter{text-align: center}
         .alignright{text-align: right}
+        #loading{
+            position: absolute;
+            z-index: 9999;
+            width: 100%;
+            text-align: center;
+            background: rgba(20, 20, 20, 0.50);
+            height: 100%;
+        }
+        #loading > div {top: 35%;position: relative;}
+        #taber{background: #f3f3f3;}
+        #taber > div{padding: 0 10px 10px;display: none}
+        #taber > h3{display: block;border: 1px solid #ccc; padding: 5px;background: #e0e0e0;cursor:pointer;}
     </style>
+
+    <!-- jQuery -->
+    <script src="<?php JS(); ?>jquery.min.js"></script>
+
 </head>
 <body>
+
+<div id="loading">
+    <div><img src="<?php img('loading.gif'); ?> " /></div>
+</div>
 
 <div id="wrapper">
 
@@ -81,7 +101,7 @@
 
         <!-- Top Navigation: Left Menu -->
         <ul class="nav navbar-nav navbar-left navbar-top-links">
-            <li><a href="<?php echo $sites->s_url;?>" target="_blank"><i class="fa fa-eye fa-fw"></i> <?php echo $sites->s_name; ?></a></li>
+            <li><a href="<?php echo $site->s_url;?>" target="_blank"><i class="fa fa-eye fa-fw"></i> <?php echo $site->s_name; ?></a></li>
         </ul>
 
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -138,11 +158,11 @@
 
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="<?php url('site/manage/'.$sites->s_id);?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="<?php url('site/manage/'.$site->s_id);?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
 
                     <li>
-                        <a href="<?php url('site/manage/'.$sites->s_id.'/page'); ?>"><i class="fa fa-print fa-fw"></i> Page </a>
+                        <a href="<?php url('site/manage/'.$site->s_id.'/page'); ?>"><i class="fa fa-print fa-fw"></i> Pages </a>
 
                     </li>
                 </ul>

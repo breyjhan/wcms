@@ -1,8 +1,7 @@
 
 </div> <!-- wrapper -->
 
-<!-- jQuery -->
-<script src="<?php JS(); ?>jquery.min.js"></script>
+
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php JS(); ?>bootstrap.min.js"></script>

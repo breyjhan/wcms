@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 function flash($data,$status = true){
-	$user = new Users();
+	$CI = & get_instance();
 	$msg['status'] 	= $status;
 	$msg['data']	= $data;
-	$user->session->set_flashdata('msg', $msg);
+	$CI->session->set_flashdata('msg', $msg);
 }
 
 function base($url=''){
@@ -31,7 +31,7 @@ function notify(){
 	}
 }
 
-function url($link){
+function url($link=''){
 	echo base_url($link);	
 }
 
@@ -42,8 +42,12 @@ function css(){
 function js(){
 	echo _JS_;
 }
-function img(){
-	echo _IMG_;
+function img($name=''){
+	if($name != ''){
+		echo _IMG_.$name;
+	}else{
+		echo _IMG_;
+	}
 }
 function bootstrap(){
 	echo _BOOTSTRAP_;

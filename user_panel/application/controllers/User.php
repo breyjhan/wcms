@@ -21,14 +21,12 @@ class User extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 
-		$this->load->helper('url');
 
 		$ixlog = $this->session->userdata('user_xlog');
 	   	if(!isset($ixlog)){
 		  redirect(site_url(),'refresh');
 		}
 
-		$this->load->helper('My_functions');
 		$this->load->model('Users');
 		$this->load->model('Sites');
 

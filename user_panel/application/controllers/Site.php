@@ -21,14 +21,12 @@ class Site extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 
-		$this->load->helper('url');
 
 		$ixlog = $this->session->userdata('user_xlog');
 	   	if(!isset($ixlog)){
 		  redirect(site_url(),'refresh');
 		}
 
-		$this->load->helper('My_functions');
 		$this->load->model('Users');
 		$this->load->model('Sites');
 		$this->load->model('Pages');
@@ -49,11 +47,14 @@ class Site extends CI_Controller {
 			$user_info 				= $this->session->userdata('user_xinfo');
 			$get_site['s_owner_id'] = $user_info->ui_user_id;
 			$get_site['s_id'] 		= $site;
-			$data['sites'] 			= $sites = $this->Sites->get_row($get_site);
-			$get_pages['page_acc']	= $sites->s_id; 
+			$data['site'] 			= $site = $this->Sites->get_row($get_site);
+			$get_pages['page_acc']	= $page_acc = $site->s_id; 
 			$data['pages']			= $this->Pages->get_where($get_pages);
 			
 			if($page == 'page'){
+				$str = 'ABCEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz0123456789';
+				$data['account'] = $key = substr(str_shuffle($str),0,11);
+				$this->session->set_userdata($key,$page_acc);
 				$this->load->view('manage/_header',$data);
 				$this->load->view('manage/pages',$data);
 				$this->load->view('manage/_footer');
